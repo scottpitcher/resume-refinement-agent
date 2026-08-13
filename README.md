@@ -233,6 +233,14 @@ cat job_description.txt | python main.py --jd-stdin
 
 The script prints its progress step by step, and finishes with a summary
 including direct links to the tailored resume and the changelog doc.
+**It will pause partway through and prompt you in the terminal**: if the JD
+lists tools not already in your resume's `Tools:` line, it prints them
+numbered and asks which ones you're competent in (comma-separated numbers,
+blank for none) before continuing. This is an interim terminal prompt --
+it's designed behind a pluggable seam (`confirm_tools` in
+`ResumeTailoringPipeline.run()`, default implementation in
+`resume_tailor/interactions.py`) so a real checkbox UI in the future web
+frontend can replace it without touching the pipeline itself.
 
 ### Testing the tailoring logic itself
 
@@ -249,11 +257,10 @@ All in `.env`:
 | Variable | Default | What it does |
 |---|---|---|
 | `WORKING_FOLDER_NAME` | `2026 Recruiting` | Top-level Drive folder name |
-| `MAX_ITER` | `5` | Max edit/score loop iterations before stopping regardless of score |
-| `SCORE_THRESHOLD` | `0.85` | Coverage score (0-1) at which the loop stops early |
-| `MAX_EDITS_PER_ITERATION` | `4` | Cap on proposed edits per loop pass, keeps each round reviewable |
+| `MAX_ACTION_PASSES` | `5` | Max full passes over the action-phrase list before stopping regardless of remaining gaps. Each pass attempts one targeted edit per not-yet-covered phrase; stops early once a pass applies zero edits |
+| `SCORE_THRESHOLD` | `0.85` | Informational only -- no longer gates the loop. Recorded in the changelog as a target-vs-actual coverage score label |
 | `MAX_LENGTH_GROWTH` | `0.05` | Max fraction the tailored resume's total character count may grow past the original base resume's length, keeps it to one page |
-| `CLAUDE_MODEL` | `claude-sonnet-4-6` | Model used for all judgment calls. Cheaper models (e.g. Haiku) cut cost per run but may need a lower `SCORE_THRESHOLD` or more `MAX_ITER` to reach the same coverage |
+| `CLAUDE_MODEL` | `claude-sonnet-4-6` | Model used for all judgment calls. Cheaper models (e.g. Haiku) cut cost per run |
 
 ## Things worth doing before you trust it on a real application
 
