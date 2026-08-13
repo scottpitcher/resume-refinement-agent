@@ -16,6 +16,7 @@ import os
 import sys
 
 from resume_tailor.claude_client import ClaudeClient
+from resume_tailor.interactions import default_terminal_tool_confirmation
 from resume_tailor.jd_fetcher import JDFetchError, fetch_page_text, slugify_filename
 from resume_tailor.pipeline import ResumeTailoringPipeline
 
@@ -80,21 +81,24 @@ def main():
         sys.exit(1)
 
     pipeline = ResumeTailoringPipeline()
-    result = pipeline.run(jd_input)
+    result = pipeline.run(jd_input, confirm_tools=default_terminal_tool_confirmation)
 
     print("\n" + "=" * 60)
     print("DONE")
     print("=" * 60)
-    print(f"Company:        {result.company}")
-    print(f"Role folder:    {result.role_slug}")
-    print(f"Resume version: {result.resume_tag}")
-    print(f"Resume file ID: {result.resume_file_id}")
-    print(f"Final score:    {result.final_score:.2f}")
-    print(f"Iterations:     {result.iterations_run}")
-    print(f"Edits applied:  {len(result.applied_edits)}")
-    print(f"Edits rejected: {len(result.rejected_edits)}")
-    print(f"Gaps flagged:   {len(result.gaps)}")
-    print(f"Changelog doc:  {result.changelog_doc_id}")
+    print(f"Company:         {result.company}")
+    print(f"Role folder:     {result.role_slug}")
+    print(f"Resume version:  {result.resume_tag}")
+    print(f"Resume file ID:  {result.resume_file_id}")
+    print(f"Baseline score:  {result.baseline_score:.2f}")
+    print(f"Final score:     {result.final_score:.2f}")
+    print(f"Action passes:   {result.action_passes_run}")
+    print(f"Tools confirmed: {len(result.tools_confirmed)}")
+    print(f"Tools declined:  {len(result.tools_declined)}")
+    print(f"Edits applied:   {len(result.applied_edits)}")
+    print(f"Edits rejected:  {len(result.rejected_edits)}")
+    print(f"Gaps flagged:    {len(result.gaps)}")
+    print(f"Changelog doc:   {result.changelog_doc_id}")
     print(f"\nOpen the resume: https://docs.google.com/document/d/{result.resume_file_id}/edit")
     print(f"Open the changelog: https://docs.google.com/document/d/{result.changelog_doc_id}/edit")
 

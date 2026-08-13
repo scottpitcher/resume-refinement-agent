@@ -11,7 +11,7 @@ def test_settings_loads_required_and_defaults(monkeypatch):
     assert settings.anthropic_api_key == "sk-ant-test-key"
     assert settings.google_client_id == "test-client-id"
     assert settings.claude_model == "claude-sonnet-4-6"
-    assert settings.max_iter == 5
+    assert settings.max_action_passes == 5
     assert settings.score_threshold == 0.85
 
 

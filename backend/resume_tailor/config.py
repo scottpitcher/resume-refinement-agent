@@ -38,9 +38,8 @@ class Settings:
 
     # --- Pipeline behavior ---
     working_folder_name: str = field(default_factory=lambda: _get_env("WORKING_FOLDER_NAME", "2026 Recruiting"))
-    max_iter: int = field(default_factory=lambda: int(_get_env("MAX_ITER", "5")))
+    max_action_passes: int = field(default_factory=lambda: int(_get_env("MAX_ACTION_PASSES", "5")))
     score_threshold: float = field(default_factory=lambda: float(_get_env("SCORE_THRESHOLD", "0.85")))
-    max_edits_per_iteration: int = field(default_factory=lambda: int(_get_env("MAX_EDITS_PER_ITERATION", "4")))
     max_length_growth: float = field(default_factory=lambda: float(_get_env("MAX_LENGTH_GROWTH", "0.05")))
 
     # --- Base resume identification ---

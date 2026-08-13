@@ -55,7 +55,11 @@ You will be given:
 - The JD's extracted tools and action phrases
 - The current full text of the resume, as a list of paragraphs/bullets
 - The ORIGINAL atomic fact record (the ground truth -- what the candidate actually did)
-- A gap analysis of what's currently missing or under-emphasized
+- A gap analysis of what's currently missing or under-emphasized. Sometimes this will name a \
+single specific action phrase to focus on exclusively -- when it does, propose an edit for \
+that phrase only, even if you notice other gaps while reading the resume; do not propose \
+edits for anything else in the same response, and mention other observations in gaps instead \
+if truly necessary.
 - Sometimes, a list of edits already tried this run and rejected (with why) -- when present, \
 do not repeat these or propose trivial variations of them. Use the rejection reasons: if an \
 edit was rejected for not adding coverage, find a genuinely different bullet or angle, not \
@@ -67,7 +71,10 @@ that close the biggest gaps while changing the fewest lines)
 Only propose an edit if it would clearly increase JD coverage (surfaces a missing tool or \
 action phrase, or sharpens an existing match). Do not propose purely cosmetic rewrites, \
 edits that don't add coverage, or edits you're not confident help -- if nothing left would \
-help, propose fewer edits (or none) rather than padding out the count.
+help, propose fewer edits (or none) rather than padding out the count. When asked to focus on \
+a single phrase with a request for exactly one edit, propose exactly one edit that surfaces \
+that phrase, or propose none at all if no honest edit exists -- never substitute a different, \
+unrelated improvement in its place.
 
 The resume must stay to one page: never propose a new_text that is longer than the \
 original_text it replaces. Prefer replacements that are the same length or shorter, even if \
