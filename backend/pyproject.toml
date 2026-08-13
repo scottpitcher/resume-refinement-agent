@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resume-tailor"
+version = "0.1.0"
+description = "Automates tailoring resumes to job postings using Claude, Google Drive, and Google Docs."
+requires-python = ">=3.9"
+dependencies = [
+    "anthropic>=0.40.0",
+    "google-api-python-client>=2.140.0",
+    "google-auth>=2.34.0",
+    "google-auth-oauthlib>=1.2.1",
+    "python-dotenv>=1.0.1",
+]
+
+[project.scripts]
+resume-tailor = "main:main"
+
+[tool.setuptools]
+packages = ["resume_tailor"]

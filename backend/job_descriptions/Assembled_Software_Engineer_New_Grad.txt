@@ -1,0 +1,23 @@
+About Assembled
+Great customer support requires human agents and AI in perfect balance, and Assembled is the only unified platform that orchestrates both at scale. Companies like Canva, Etsy, and Robinhood use Assembled to coordinate their entire support operation — in-house agents, BPOs, and AI — in a single operating system. With AI Agents that resolve cases end-to-end, AI Copilot for agent assistance, and AI-powered workforce management that optimizes both human and AI capacity, Assembled helps teams deliver faster, better service while making smarter decisions about how to staff and automate. Backed by $71M from NEA, Emergence Capital, and Stripe, we're building the platform that makes AI and human collaboration actually work.
+
+The role
+We're looking for a new or recent graduate who wants to build real product from day one. A lot of new grad roles are a queue of small tickets and a lot of waiting on code review. That's not this one. On your first day, you'll ship code that customers use. Within a few months, you'll own a feature or a piece of the product outright. Support teams at companies like CashApp, Etsy, and Robinhood run their day on what we build, so the work you do lands on real people almost immediately.
+
+We're not looking for someone who's done it all. We're looking for the person who taught themselves a new language for a side project, who can't walk past a misaligned pixel, who asks "why is this so painful for the user?" and then just fixes it. Bring strong fundamentals, a real drive to build, and an appetite to learn fast. We'll give you real problems to own and the people to learn them from.
+
+Responsibilities
+Build our core product experiences: At any given time, this might mean conceiving of and building new features or product areas, debugging mission-critical integrations, maintaining and scaling our infrastructure, or implementing algorithms for forecasting, optimization, or AI agents.
+Engage with customers: Collaborate with our customers (both support agents and managers) to understand their needs, how they interact with our product, and how we can improve their lives.
+Wear many hats: In addition to writing and reviewing code, you'll find yourself talking to users, weighing in on the roadmap, interviewing future teammates, and collaborating with the Business team on product launches.
+Learn the stack, then push it: Our stack is React, Go, and Postgres, but we don't require prior experience with any of them — we're polyglots who also love Haskell, Rust, Ruby, and other languages in our side projects. We care far more about how you think than what you already know.
+Shape the team culture: Encourage a startup mentality that's all about staying positive, aiming for top-notch product quality, and taking initiative.
+
+What excites us
+Strong fundamentals: You have a solid grounding in data structures, algorithms, and software design, whether from a CS degree, a bootcamp, or teaching yourself. You write clean code and you know how to break a big problem into tractable pieces.
+Strong generalist: You move across the stack without ceremony and pick up new domains quickly. You care more about solving the problem than which layer it lives in.
+Voracious learner: You're intellectually curious and love learning new things across a wide variety of disciplines. Many people on our team came to software from different backgrounds, including chemical engineering, economics, and mathematics.
+Relentless builder: You consider yourself a doer. You've shipped things (side projects, internships, class projects, open source) and you're motivated by creating products that have outsized impact.
+Detail-obsessed: You've caught yourself fixing a misaligned pixel or rewriting an error message nobody asked you to, because shipping something sloppy bothers you.
+User-obsessed: You've found yourself asking "why is this so painful for the user?" and then done something about it, even when it wasn't your job.
+Entrepreneurial: You're gritty, determined, and self-motivated. You thrive in unstructured environments and relish finding big problems and solving them.

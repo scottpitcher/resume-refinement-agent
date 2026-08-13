@@ -1,0 +1,41 @@
+# --- backend (Python) ---
+
+# Environment / secrets
+backend/.env
+credentials.json
+token.json
+*.token.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- frontend (Node, once it exists) ---
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+frontend/build/
+frontend/.turbo/
+frontend/.env
+frontend/.env.local
+
+# --- IDE / editor / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store

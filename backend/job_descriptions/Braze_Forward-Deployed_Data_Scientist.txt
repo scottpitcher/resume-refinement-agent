@@ -1,0 +1,39 @@
+Forward-Deployed Data Scientist at Braze
+============================================================
+
+ROLE SUMMARY
+------------------------------------------------------------
+The Forward-Deployed Data Scientist at Braze is a technical expert who designs and builds end-to-end machine learning solutions that power 1-to-1 personalization for leading global brands. The role involves owning the full ML pipeline from raw data through model deployment, partnering with customers and internal product teams, and helping shape BrazeAI's product strategy and roadmap.
+
+RESPONSIBILITIES
+------------------------------------------------------------
+- Design ML use cases from the ground up, scoping solutions that optimize for real business value and proactively identifying risks
+- Build and own the full ML pipeline, taking customers' raw data through transformation, model training, and activation to personalize experiences for millions of end users
+- Drive customer success by providing ongoing technical guidance that ensures data science performance, successful adoption, and measurable outcomes
+- Extend product capabilities by developing features and tools that support the broader AI deployment team and scale engagements
+- Partner with the Braze Product team to refine and advance Braze's reinforcement learning algorithms and self-learning platform capabilities
+- Shape BrazeAI product strategy and roadmap by bringing customer-facing insights and deep technical expertise
+
+REQUIRED QUALIFICATIONS
+------------------------------------------------------------
+- Bachelor's degree in Computer Science, Data Science, Mathematics, Engineering, or a related field
+- 3–5+ years of hands-on experience as a Data Scientist, Machine Learning Engineer, or similar role working with large-scale data and production environments
+- Proficiency in Python (Pandas) and core ML libraries (TensorFlow, Keras, scikit-learn, CatBoost, XGBoost)
+- Skilled in SQL for querying and manipulating datasets
+- Experience with machine learning pipelines and model deployment
+- Strong engineering best practices: well-structured, modular, documented code; Git, CI/CD, testing frameworks, type-hinting, code reviews
+- Comfortable working directly with clients and cross-functional teams, aligning stakeholders, and translating technical concepts into business value
+- Ability to identify opportunities and risks early, troubleshoot obstacles, and drive creative solutions
+- Ability to explain complex technical ideas persuasively to both technical and non-technical audiences
+
+PREFERRED QUALIFICATIONS
+------------------------------------------------------------
+- Master's or PhD in a relevant technical discipline
+- Experience in customer-facing or consulting roles
+- Experience with DevOps tools such as Airflow, Kubernetes, Terraform, or GCP
+- Experience with data integration/ETL and pipeline optimization
+- Experience with reinforcement learning algorithms
+
+COMPANY INFO
+------------------------------------------------------------
+Braze is the leading customer engagement platform that empowers brands to Be Absolutely Engaging™. Built on a foundation of composable intelligence, BrazeAI™ enables marketers to combine and activate AI agents, models, and features across the platform for smarter, faster, and more meaningful customer engagement. The company is headquartered in New York with offices across Austin, Berlin, London, Singapore, Tokyo, and more. Braze has been consistently recognized as a Leader in marketing technology, a Great Place to Work®, and was named a 2026 Best Places to Work by Built In.

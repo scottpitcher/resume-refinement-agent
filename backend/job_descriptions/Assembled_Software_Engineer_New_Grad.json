@@ -1,0 +1,22 @@
+{
+  "company_name": "Assembled",
+  "role_title": "Software Engineer (New Grad)",
+  "role_summary": "A new-grad software engineering role building real product from day one -- shipping customer-facing code on day one and owning a feature or piece of the product within a few months, at a company building an AI/human customer support orchestration platform.",
+  "tools": [
+    {"name": "React", "importance": "preferred", "context": "Our stack is React, Go, and Postgres, but we don't require prior experience with any of them"},
+    {"name": "Go", "importance": "preferred", "context": "Our stack is React, Go, and Postgres, but we don't require prior experience with any of them"},
+    {"name": "Postgres", "importance": "preferred", "context": "Our stack is React, Go, and Postgres, but we don't require prior experience with any of them"}
+  ],
+  "action_phrases": [
+    "Build core product experiences: conceiving of and building new features or product areas",
+    "Debug mission-critical integrations",
+    "Maintain and scale infrastructure",
+    "Implement algorithms for forecasting, optimization, or AI agents",
+    "Collaborate with customers to understand their needs and how they interact with the product",
+    "Write and review code",
+    "Talk to users and weigh in on the roadmap",
+    "Interview future teammates",
+    "Collaborate with the Business team on product launches",
+    "Break a big problem into tractable pieces using strong fundamentals in data structures, algorithms, and software design"
+  ]
+}

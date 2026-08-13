@@ -1,0 +1,32 @@
+{
+  "company_name": "Braze",
+  "role_title": "Forward-Deployed Data Scientist",
+  "role_summary": "The Forward-Deployed Data Scientist at Braze is a technical expert who designs and builds end-to-end machine learning solutions that power 1-to-1 personalization for leading global brands. The role involves owning the full ML pipeline from raw data through model deployment, partnering with customers and internal product teams, and helping shape BrazeAI's product strategy and roadmap.",
+  "tools": [
+    {"name": "Python", "importance": "required", "context": "Proficiency in Python (Pandas) and core ML libraries"},
+    {"name": "Pandas", "importance": "required", "context": "Proficiency in Python (Pandas) and core ML libraries"},
+    {"name": "TensorFlow", "importance": "required", "context": "core ML libraries (TensorFlow, Keras, scikit-learn, CatBoost, XGBoost)"},
+    {"name": "Keras", "importance": "required", "context": "core ML libraries (TensorFlow, Keras, scikit-learn, CatBoost, XGBoost)"},
+    {"name": "scikit-learn", "importance": "required", "context": "core ML libraries (TensorFlow, Keras, scikit-learn, CatBoost, XGBoost)"},
+    {"name": "CatBoost", "importance": "required", "context": "core ML libraries (TensorFlow, Keras, scikit-learn, CatBoost, XGBoost)"},
+    {"name": "XGBoost", "importance": "required", "context": "core ML libraries (TensorFlow, Keras, scikit-learn, CatBoost, XGBoost)"},
+    {"name": "SQL", "importance": "required", "context": "Skilled in SQL for querying and manipulating datasets"},
+    {"name": "Git", "importance": "required", "context": "Strong engineering best practices: ... Git, CI/CD, testing frameworks"},
+    {"name": "CI/CD", "importance": "required", "context": "Strong engineering best practices: ... Git, CI/CD, testing frameworks"},
+    {"name": "Airflow", "importance": "preferred", "context": "Experience with DevOps tools such as Airflow, Kubernetes, Terraform, or GCP"},
+    {"name": "Kubernetes", "importance": "preferred", "context": "Experience with DevOps tools such as Airflow, Kubernetes, Terraform, or GCP"},
+    {"name": "Terraform", "importance": "preferred", "context": "Experience with DevOps tools such as Airflow, Kubernetes, Terraform, or GCP"},
+    {"name": "GCP", "importance": "preferred", "context": "Experience with DevOps tools such as Airflow, Kubernetes, Terraform, or GCP"}
+  ],
+  "action_phrases": [
+    "Design ML use cases from the ground up, scoping solutions that optimize for real business value",
+    "Build and own the full ML pipeline, taking raw data through transformation, model training, and activation",
+    "Drive customer success by providing ongoing technical guidance",
+    "Extend product capabilities by developing features and tools that support the broader AI deployment team",
+    "Partner with the Product team to refine and advance reinforcement learning algorithms",
+    "Shape product strategy and roadmap by bringing customer-facing insights and deep technical expertise",
+    "Work directly with clients and cross-functional teams, aligning stakeholders",
+    "Translate technical concepts into business value",
+    "Identify opportunities and risks early, troubleshoot obstacles, and drive creative solutions"
+  ]
+}
