@@ -25,48 +25,54 @@ from inside `backend/`.**
    either extracted fresh from raw JD text, or read directly from a
    pre-extracted `job_descriptions/*.json` file (see below), which skips
    that extraction call entirely. It scores the untouched resume against
-   this record as a baseline.
-5. It loops: propose edits -> fact-check each edit -> apply only the ones
-   that pass, add coverage without dropping any, and stay within the
-   one-page length budget -> re-score against the JD -> repeat until the
-   score clears your threshold or it hits `MAX_ITER`. If an entire round's
-   edits get applied but the resulting score doesn't beat the score before
-   that round, those edits are reverted and the loop stops (the
-   score-increase gate below). If a round's edits are all *rejected*
-   instead (nothing applied), the loop doesn't give up -- it tries again
-   with the rejected edits and their rejection reasons fed back in, so the
-   next round proposes something genuinely different rather than the same
-   non-additive rewrite. It only stops early on an empty round if Claude
-   itself proposes zero edits (nothing left it thinks is worth trying).
-6. It writes a changelog Doc into the same folder listing every edit
-   applied, every edit rejected (and why), and any gaps it couldn't close
-   honestly.
+   this record as a baseline (reporting only -- see below).
+5. **Tools phase** (deterministic, zero Claude calls): the resume's
+   `Tools:` line (in its SKILLS section) is parsed, and each JD tool not
+   already listed there is presented to you directly -- you're asked which
+   ones you're actually competent in. There's no honest way for Claude to
+   infer this from resume text that doesn't mention the tool at all; it's
+   a fact only you can supply. Confirmed tools are appended to the `Tools:`
+   line in one edit; declined ones are logged as a gap, not silently
+   dropped.
+6. **Action-phrase phase** (Claude-driven, exhaustive): goes through the
+   JD's action phrases one at a time -- not batched -- skipping any
+   already honestly reflected in the baseline resume. For each remaining
+   phrase it asks Claude for exactly one targeted edit that surfaces it,
+   runs it through the gates below, and moves to the next phrase whether
+   or not that one succeeded (a single rejection never stops the pass).
+   After a full pass through the list, if nothing got applied, it's done
+   -- that's convergence, not a score threshold. If something did apply,
+   it does another full pass (skipping now-covered phrases), up to
+   `MAX_ACTION_PASSES`.
+7. It writes a changelog Doc into the same folder listing tools already
+   present, every edit applied, every edit rejected (and why, including
+   declined tools), and any gaps it couldn't close honestly.
 
-**Four gates are enforced in code, not just prompted:**
+**Gates enforced in code, not just prompted, during the action-phrase
+phase:**
 - **Fact-check gate.** An edit is only applied if a separate Claude call
   confirms no underlying fact or action changed, and if the original text
   matched exactly once in the document (so it can't accidentally rewrite
   the wrong occurrence).
 - **Coverage gate.** An edit is only applied if it doesn't drop a
-  tool/action the resume currently covers, and it adds coverage of at
-  least one it doesn't already cover -- otherwise it's rejected as a
-  no-op that wouldn't move the score. Tool coverage is checked with a
+  tool/action the resume currently covers, *and* it specifically delivers
+  the action phrase it was asked to target (or adds a tool as a side
+  effect) -- an edit that touches some other phrase instead doesn't count
+  as success for the one it was given. Tool coverage is checked with a
   deterministic, case-insensitive substring match against the whole
   resume (no API call); action-phrase coverage reuses the same
   fact-check call's own before/after read of the bullet, so this adds no
   extra Claude calls.
-- **Score-increase gate.** Each iteration's post-edit coverage score is
-  compared against the score before that iteration. If it didn't strictly
-  increase, that iteration's edits are reverted in the Doc and the loop
-  stops -- a holistic backstop on top of the per-edit coverage gate.
 - **One-page length gate.** Before an edit is applied, the pipeline checks
   whether it would push the resume's total character count past
   `MAX_LENGTH_GROWTH` over the original base resume's length. If so, it's
   rejected before it ever touches the Doc.
 
-There is no code path that applies an edit without passing the fact-check,
-coverage, and length gates, and no code path that leaves a net-negative
-iteration's edits in place.
+There is no code path that applies an edit without passing all three
+gates. The coverage score (baseline + final) is purely informational in
+the changelog now -- it never decides whether the pipeline continues or
+stops; the per-edit coverage gate above already enforces "only ever
+net-positive" at a finer grain than a holistic re-score could.
 
 ## Job description format
 

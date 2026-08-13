@@ -205,15 +205,29 @@ def test_run_action_phrase_phase_respects_pass_cap(monkeypatch):
     pipeline.docs.get_paragraphs.return_value = ["Some bullet."]
     pipeline.docs.count_occurrences.return_value = 1
 
-    jd_requirements = {"tools": [], "action_phrases": ["Lead a migration"]}
-
-    # Every pass proposes a *new* variant that gains a *different, unrelated* phrase --
-    # so the target phrase never gets marked covered and the phrase is reattempted every
-    # pass, meaning it never produces a clean pass on its own; the cap must still stop it.
-    pipeline.claude.propose_edits.return_value = {
-        "edits": [{"original_text": "Some bullet.", "new_text": "Reworded bullet."}], "gaps": [],
+    jd_requirements = {
+        "tools": [{"name": "ToolA"}, {"name": "ToolB"}, {"name": "ToolC"}],
+        "action_phrases": ["Lead a migration"],
     }
-    pipeline.claude.fact_check_edit.return_value = _passing_fact_check(phrase_after="Some other phrase")
+
+    # Every pass's edit keeps the "Some bullet." prefix (so the next pass's replace
+    # still finds a match) and appends mention of a *new* tool each time -- so
+    # tools_gained is always non-empty and the edit keeps getting applied, but the
+    # target phrase is never covered (fact-check never reports it), so the phrase
+    # is never marked done and this never produces a clean pass on its own. Only
+    # the pass cap should stop it.
+    call_count = {"n": 0}
+
+    def propose_side_effect(**kwargs):
+        call_count["n"] += 1
+        tool_name = f"Tool{chr(ord('A') + call_count['n'] - 1)}"
+        return {
+            "edits": [{"original_text": "Some bullet.", "new_text": f"Some bullet. Used {tool_name}."}],
+            "gaps": [],
+        }
+
+    pipeline.claude.propose_edits.side_effect = propose_side_effect
+    pipeline.claude.fact_check_edit.return_value = _passing_fact_check(phrase_after=None)
 
     result = pipeline._run_action_phrase_phase(
         "resume123", jd_requirements, ["Some bullet."], max_length=10_000, current_length=20,
@@ -221,6 +235,7 @@ def test_run_action_phrase_phase_respects_pass_cap(monkeypatch):
     )
 
     assert result["passes_run"] == 2
+    assert len(result["applied"]) == 2
 
 
 def test_action_phrase_coverage_gate_requires_target_phrase():
@@ -275,7 +290,11 @@ def test_action_phrase_phase_does_not_abort_pass_on_single_rejection():
         covered_phrases=set(),
     )
 
-    # Phrase A's rejection must not stop Phrase B from being attempted in the same pass.
-    assert len(result["rejected"]) == 1
+    # Phrase A's rejection must not stop Phrase B from being attempted in the same pass:
+    # Phrase B's edit is applied despite Phrase A having just been rejected. Phrase A
+    # itself is never covered, so it's legitimately reattempted (and rejected again) on
+    # pass 2, since nothing marked it done -- that's correct, not a bug in the test.
     assert len(result["applied"]) == 1
     assert result["applied"][0].new_text == "Good edit for Phrase B."
+    assert len(result["rejected"]) == 2
+    assert all(e.original_text == "Bullet one." for e in result["rejected"])
